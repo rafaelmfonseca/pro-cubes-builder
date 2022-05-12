@@ -1,0 +1,11 @@
+{
+    "name": "com.pixel.pro.cubes.builder",
+    "displayName": "Pro Cubes Builder",
+    "version": "0.0.1",
+    "unity": "2021.2",
+    "description": "Pro.Cubes.Builder is a package that contains scripts for building cubes in 3d.",
+    "keywords": [
+        "ui"
+    ],
+    "category": "UI"
+}

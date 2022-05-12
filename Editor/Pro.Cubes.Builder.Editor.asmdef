@@ -1,0 +1,17 @@
+{
+    "name": "Pro.Cubes.Builder.Editor",
+    "references": [
+        "Pro.Cubes.Builder"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
