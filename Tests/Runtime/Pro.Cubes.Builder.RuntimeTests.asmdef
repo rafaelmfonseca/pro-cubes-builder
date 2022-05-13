@@ -1,5 +1,6 @@
 {
     "name": "Pro.Cubes.Builder.RuntimeTests",
+    "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
