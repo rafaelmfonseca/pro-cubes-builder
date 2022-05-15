@@ -18,11 +18,11 @@ namespace PCB.Core.World
         private BlockState[] _states;
 
         [SerializeField]
-        private byte _chunkSizeX, _chunkSizeY, _chunkSizeZ;
+        private int _chunkSizeX, _chunkSizeY, _chunkSizeZ;
 
         public ChunkRenderStatus RenderStatus { get; set; }
 
-        public BlockState this[byte x, byte y, byte z]
+        public BlockState this[int x, int y, int z]
         {
             get => _states[IndexOf(x, y, z)];
             set => _states[IndexOf(x, y, z)] = value;
@@ -37,10 +37,12 @@ namespace PCB.Core.World
         public Vector2Int Position => _position;
         public Vector2Int WorldPosition => _position * new Vector2Int(_chunkSizeX, _chunkSizeZ);
 
-        public void Initialize(Vector2Int position, byte chunkSizeX, byte chunkSizeY, byte chunkSizeZ)
+        public void Initialize(Vector2Int position, int chunkSizeX, int chunkSizeY, int chunkSizeZ)
         {
             gameObject.name = position.ToString();
             gameObject.transform.position = new Vector3(WorldPosition.x, 0, WorldPosition.y);
+
+            _states = new BlockState[chunkSizeX * chunkSizeY * chunkSizeZ];
 
             _chunkSizeX = chunkSizeX;
             _chunkSizeY = chunkSizeY;
@@ -49,7 +51,7 @@ namespace PCB.Core.World
             RenderStatus = ChunkRenderStatus.Pending;
         }
 
-        private int IndexOf(byte x, byte y, byte z) => IndexUtility.GetIndex1DFrom3D(x, y, z, _chunkSizeX, _chunkSizeZ);
+        private int IndexOf(int x, int y, int z) => IndexUtility.GetIndex1DFrom3D(x, y, z, _chunkSizeX, _chunkSizeY, _chunkSizeZ);
 
         public void Dispose()
         {

@@ -7,7 +7,7 @@ namespace PCB.Core.World
     [Serializable]
     public class DefaultChunkSettings : MonoBehaviour, IChunkSettings
     {
-        public byte ChunkSizeX
+        public int ChunkSizeX
         {
             get
             {
@@ -15,7 +15,7 @@ namespace PCB.Core.World
             }
         }
 
-        public byte ChunkSizeY
+        public int ChunkSizeY
         {
             get
             {
@@ -23,11 +23,19 @@ namespace PCB.Core.World
             }
         }
 
-        public byte ChunkSizeZ
+        public int ChunkSizeZ
         {
             get
             {
                 return 16;
+            }
+        }
+
+        public float UVBlockSize
+        {
+            get
+            {
+                return (1f / 5f);
             }
         }
     }

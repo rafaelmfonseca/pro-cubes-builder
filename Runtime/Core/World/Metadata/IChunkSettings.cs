@@ -2,8 +2,9 @@
 {
     public interface IChunkSettings
     {
-        byte ChunkSizeX { get; }
-        byte ChunkSizeY { get; }
-        byte ChunkSizeZ { get; }
+        int ChunkSizeX { get; }
+        int ChunkSizeY { get; }
+        int ChunkSizeZ { get; }
+        float UVBlockSize { get; }
     }
 }

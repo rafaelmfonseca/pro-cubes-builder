@@ -25,6 +25,7 @@ namespace PCB.Core.World
         private IChunkProvider _chunkProvider;
         private IChunkRenderer _chunkRenderer;
         private IChunkSettings _chunkSettings;
+        private IChunkGenerator _chunkGenerator;
 
         public void Awake()
         {
@@ -36,6 +37,7 @@ namespace PCB.Core.World
             _chunkProvider = GetComponent<IChunkProvider>();
             _chunkRenderer = GetComponent<IChunkRenderer>();
             _chunkSettings = GetComponent<IChunkSettings>();
+            _chunkGenerator = GetComponent<IChunkGenerator>();
         }
 
         public void Update()
@@ -73,19 +75,18 @@ namespace PCB.Core.World
                 if (_numChunksGenerating >= maxGenerateChunksInFrame)
                     return;
 
-                if (_generateChunkQueue.TryPop(out Vector2Int chunkPosition))
+                if (_generateChunkQueue.TryPop(out Vector2Int chunkPosition) && !_chunks.ContainsKey(chunkPosition))
                 {
                     StartCoroutine(GenerateChunk(chunkPosition));
-
-                    Interlocked.Increment(ref _numChunksGenerating);
                 }
             }
         }
 
         private IEnumerator GenerateChunk(Vector2Int chunkPosition)
         {
-            if (_chunks.ContainsKey(chunkPosition))
-                yield break;
+            Interlocked.Increment(ref _numChunksGenerating);
+
+            yield return null;
 
             var chunk = _chunksPool.Get();
 
@@ -94,6 +95,16 @@ namespace PCB.Core.World
             chunk.Initialize(chunkPosition, _chunkSettings.ChunkSizeX, _chunkSettings.ChunkSizeY, _chunkSettings.ChunkSizeZ);
 
             yield return null;
+
+            _chunkGenerator.Generate(chunk);
+
+            yield return null;
+
+            _chunkRenderer.Render(chunk);
+
+            yield return null;
+
+            Interlocked.Decrement(ref _numChunksGenerating);
         }
 
         private Chunk CreatePooledChunk()
