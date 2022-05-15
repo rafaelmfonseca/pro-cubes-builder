@@ -39,14 +39,16 @@ namespace PCB.Core.World
 
         public void Initialize(Vector2Int position, int chunkSizeX, int chunkSizeY, int chunkSizeZ)
         {
-            gameObject.name = position.ToString();
-            gameObject.transform.position = new Vector3(WorldPosition.x, 0, WorldPosition.y);
-
-            _states = new BlockState[chunkSizeX * chunkSizeY * chunkSizeZ];
+            _position = position;
 
             _chunkSizeX = chunkSizeX;
             _chunkSizeY = chunkSizeY;
             _chunkSizeZ = chunkSizeZ;
+
+            gameObject.name = position.ToString();
+            gameObject.transform.position = new Vector3(WorldPosition.x, 0, WorldPosition.y);
+
+            _states = new BlockState[chunkSizeX * chunkSizeY * chunkSizeZ];
 
             RenderStatus = ChunkRenderStatus.Pending;
         }

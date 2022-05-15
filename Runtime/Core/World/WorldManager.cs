@@ -110,7 +110,7 @@ namespace PCB.Core.World
         private Chunk CreatePooledChunk()
         {
             var chunkGameObject = new GameObject();
-            chunkGameObject.transform.SetParent(transform);
+            chunkGameObject.transform.SetParent(transform, worldPositionStays: false);
 
             return chunkGameObject.AddComponent<Chunk>();
         }
