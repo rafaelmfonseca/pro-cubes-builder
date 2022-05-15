@@ -9,18 +9,28 @@ namespace PCB.Core.World
     {
         public Vector2Int[] ChunksPositions()
         {
-            return new[] {
+            return new[]
+            {
                 new Vector2Int(0, 0),
                 new Vector2Int(1, 0),
                 new Vector2Int(2, 0),
+                new Vector2Int(3, 0),
+                new Vector2Int(4, 0),
+                new Vector2Int(5, 0),
 
                 new Vector2Int(0, 1),
                 new Vector2Int(1, 1),
                 new Vector2Int(2, 1),
+                new Vector2Int(3, 1),
+                new Vector2Int(4, 1),
+                new Vector2Int(5, 1),
 
                 new Vector2Int(0, 2),
                 new Vector2Int(1, 2),
                 new Vector2Int(2, 2),
+                new Vector2Int(3, 2),
+                new Vector2Int(4, 2),
+                new Vector2Int(5, 2),
             };
         }
     }

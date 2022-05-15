@@ -240,6 +240,9 @@ namespace PCB.Core.World
             mesh.Optimize();
             mesh.RecalculateNormals();
 
+            var collider = chunk.gameObject.GetComponent<MeshCollider>();
+            collider.sharedMesh = mesh;
+
             var renderer = chunk.gameObject.GetComponent<MeshRenderer>();
             renderer.material = blockMaterial;
         }
